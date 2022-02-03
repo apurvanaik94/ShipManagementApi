@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "17pzDV2bSu/ROlGoQ7lGmWKiZL1LvQuyXucPVppAGbg=",
+  "Source": "ShipManagementApi",
+  "BasePath": "_content/ShipManagementApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
