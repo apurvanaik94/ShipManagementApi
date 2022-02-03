@@ -15,8 +15,7 @@ namespace ShipManagementApi.Helpers
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            // in memory database used for simplicity, change to a real db for production applications
-            options.UseInMemoryDatabase("TestDb");
+            options.UseInMemoryDatabase("ShipDb");
         }
 
         public DbSet<Ship> Ships { get; set; }
