@@ -1,3 +1,10 @@
+/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.csproj.AssemblyReference.cache
+/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.GeneratedMSBuildEditorConfig.editorconfig
+/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.AssemblyInfoInputs.cache
+/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.AssemblyInfo.cs
+/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.csproj.CoreCompileInputs.cache
+/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.MvcApplicationPartsAssemblyInfo.cs
+/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.MvcApplicationPartsAssemblyInfo.cache
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/appsettings.Development.json
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/appsettings.json
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/ShipManagementApi
@@ -6,6 +13,8 @@
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/ShipManagementApi.dll
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/ref/ShipManagementApi.dll
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/ShipManagementApi.pdb
+/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/AutoMapper.dll
+/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll
@@ -13,13 +22,6 @@
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
-/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.csproj.AssemblyReference.cache
-/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.GeneratedMSBuildEditorConfig.editorconfig
-/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.AssemblyInfoInputs.cache
-/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.AssemblyInfo.cs
-/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.csproj.CoreCompileInputs.cache
-/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.MvcApplicationPartsAssemblyInfo.cs
-/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/ShipManagementApi.MvcApplicationPartsAssemblyInfo.cache
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/staticwebassets.build.json
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/staticwebassets.development.json
 /Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/obj/Debug/net6.0/scopedcss/bundle/ShipManagementApi.styles.css

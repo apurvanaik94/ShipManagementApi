@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "BRmfQ04TREOTPH37i2rbFUNSRRzWocAGgTngZJCOZVJ8vNWIKgk3bKWYkGJ/9D+cpyvyh+zeUCUzshHwrQcnKw==",
+  "dgSpecHash": "RDUwoS7Z/sqO6Il1hrjvgZL4vlpCPHy7hEtXeNzuzrOhCVNsrdOHAlVvlXjNjHIjK/YfCOeFqjjh9wcvI+1bUQ==",
   "success": true,
   "projectFilePath": "/Users/parag/Desktop/Ship Management App/Ship-Management-Web-API/ShipManagementApi/ShipManagementApi.csproj",
   "expectedPackageFiles": [
+    "/Users/parag/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
+    "/Users/parag/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "/Users/parag/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/parag/.nuget/packages/microsoft.entityframeworkcore/6.0.1/microsoft.entityframeworkcore.6.0.1.nupkg.sha512",
     "/Users/parag/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.1/microsoft.entityframeworkcore.abstractions.6.0.1.nupkg.sha512",
     "/Users/parag/.nuget/packages/microsoft.entityframeworkcore.analyzers/6.0.1/microsoft.entityframeworkcore.analyzers.6.0.1.nupkg.sha512",
