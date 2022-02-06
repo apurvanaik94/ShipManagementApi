@@ -3,6 +3,7 @@ namespace ShipManagementApi.Models.Ships
 {
     public class ShipRequest
     {
+        public int Id{get;}
         [Required]
         public string Name { get; set; }
 

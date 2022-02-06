@@ -1,7 +1,9 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ShipManagementApi.Models.Ships;
-using ShipManagementApi.Services;
+using ShipManagementApi.BL;
+using ShipManagementApi.Entities;
+using ShipManagementApi.Helpers;
 
 namespace ShipManagementApi.Controllers
 {
@@ -9,11 +11,11 @@ namespace ShipManagementApi.Controllers
     [ApiController]
     public class ShipsController : ControllerBase
     {
-        private IShipService _shipService;
+        private IBaseService<Ship> _shipService;
         private IMapper _mapper;
 
         public ShipsController(
-            IShipService shipService,
+            IBaseService<Ship> shipService,
             IMapper mapper)
         {
             _shipService = shipService;
@@ -21,30 +23,47 @@ namespace ShipManagementApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var ships = _shipService.GetAll();
+            var ships = await _shipService.GetAll();
             return Ok(ships);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<ActionResult<Ship>> GetById(int id)
         {
-            var ship = _shipService.GetById(id);
+            var ship = await _shipService.Get(id);
             return Ok(ship);
         }
 
         [HttpPost]
-        public IActionResult Create(ShipRequest model)
+        public async Task<IActionResult> Create(ShipRequest model)
         {
-            _shipService.Create(model);
-            return Ok(new { message = "Ship created" });
+            if(await CheckIfCodeExists(model.Code))
+            {
+                throw new AppException("Ship with the code '" + model.Code + "' already exists");
+            }
+            var ship=_mapper.Map<Ship>(model);
+            await _shipService.Insert(ship);
+            return CreatedAtAction("GetById", new { id = ship.Id }, ship);
+        }
+
+        public async Task<bool> CheckIfCodeExists(string code)
+        {
+            var ships = await _shipService.GetAll();
+            return (ships.Any(x => x.Code == code));         
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, ShipRequest model)
+        public async Task<IActionResult> Update(int id, ShipRequest model)
         {
-            _shipService.Update(id, model);
+            if(await CheckIfCodeExists(model.Code))
+            {
+                throw new AppException("Ship with the code '" + model.Code + "' already exists");
+            }
+            var ship=_mapper.Map<Ship>(model);
+            ship.Id=id;
+            await _shipService.Update(ship);
             return Ok(new { message = "Ship updated" });
         }
 

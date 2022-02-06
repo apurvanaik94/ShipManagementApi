@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Text.Json.Serialization;
 using ShipManagementApi.Helpers;
-using ShipManagementApi.Services;
+using ShipManagementApi.DAL;
+using ShipManagementApi.BL;
 
 namespace ShipManagementApi
 {
@@ -22,7 +20,8 @@ namespace ShipManagementApi
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // configure DI for application services
-            services.AddScoped<IShipService, ShipService>();
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));       
+            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>)); 
         }
 
         // configure the HTTP request pipeline
