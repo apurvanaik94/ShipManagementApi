@@ -42,22 +42,32 @@ namespace ShipManagementApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ShipRequest model)
         {
+            List<Ship>shipList= await _repository.SelectAll<Ship>();
+            if(shipList.Any(x => x.Code == model.Code))
+            {
+                throw new AppException("Ship with the code '" + model.Code + "' already exists");
+            }
             Ship ship=_mapper.Map<Ship>(model);
             await _repository.CreateAsync<Ship>(ship);
             return CreatedAtAction("GetById", new { id = ship.Id }, ship); 
         }
 
-
-
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, ShipRequest model)
         {
-            if (id != model.Id)
+            List<Ship>shipList= await _repository.SelectAll<Ship>();
+            Ship existingShip= shipList.FirstOrDefault(ship=>ship.Id==id);
+
+            if (existingShip == null)
             {
-                return BadRequest();
+                return NotFound();
             }
-            Ship ship=_mapper.Map<Ship>(model);
-            await _repository.UpdateAsync<Ship>(ship);
+            if(existingShip.Code != existingShip.Code && shipList.Any(x => x.Code == model.Code))
+            {
+                throw new AppException("Ship with the code '" + model.Code + "' already exists");
+            }
+            _mapper.Map(model, existingShip);
+            await _repository.UpdateAsync<Ship>(existingShip);
 
             return NoContent();
         }
@@ -65,7 +75,7 @@ namespace ShipManagementApi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Ship>> Delete(long id)
         {
-            var model = await _repository.SelectById<Ship>(id);
+            Ship model = await _repository.SelectById<Ship>(id);
 
             if (model == null)
             {

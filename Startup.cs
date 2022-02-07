@@ -19,7 +19,7 @@ namespace ShipManagementApi
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // configure DI for application 
-            services.AddScoped<IRepository, Repository<DataContext>>();
+            services.AddTransient<IRepository, Repository<DataContext>>();
         }
 
         // configure the HTTP request pipeline
