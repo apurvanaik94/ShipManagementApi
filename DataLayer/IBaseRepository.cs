@@ -1,14 +1,11 @@
-using System.Linq.Expressions;       
-      
 namespace ShipManagementApi.DAL      
 {       
-    public interface IBaseRepository<T> where T : class       
+    public interface IRepository    
     {       
-       Task<IEnumerable < T >> GetAll();  
-        Task<T> Get(int id);  
-        void Insert(T entity);  
-        void Update(T entity);  
-        void Delete(int id); 
-        Task<int> Save();
+       Task<List<T>> SelectAll<T>() where T : class;
+        Task<T> SelectById<T>(long id) where T : class;
+        Task CreateAsync<T>(T entity) where T : class;
+        Task UpdateAsync<T>(T entity) where T : class;
+        Task DeleteAsync<T>(T entity) where T : class;
     }  
 }

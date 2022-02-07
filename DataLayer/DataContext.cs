@@ -5,17 +5,22 @@ namespace ShipManagementApi.DAL
 {
     public class DataContext : DbContext
     {
-        protected readonly IConfiguration Configuration;
-        public DataContext(IConfiguration configuration)
+        private readonly DbContextOptions _options;
+        public DataContext(DbContextOptions options) : base(options)
         {
-            Configuration = configuration;
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            options.UseInMemoryDatabase("ShipDb");
+            _options = options;
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase("ShipDb");
+        }
         public DbSet<Ship> Ships { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
 
     }
 }

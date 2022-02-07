@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
 using ShipManagementApi.Helpers;
 using ShipManagementApi.DAL;
-using ShipManagementApi.BL;
 
 namespace ShipManagementApi
 {
@@ -19,9 +18,8 @@ namespace ShipManagementApi
             });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            // configure DI for application services
-            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));       
-            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>)); 
+            // configure DI for application 
+            services.AddScoped<IRepository, Repository<DataContext>>();
         }
 
         // configure the HTTP request pipeline

@@ -3,49 +3,44 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ShipManagementApi.DAL
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+public class Repository<TDbContext> : IRepository where TDbContext : DbContext
     {
-        private DataContext _context = null;
-        private DbSet<T> table = null;
-        public BaseRepository(DataContext context)
+        protected TDbContext dbContext;
+
+        public Repository(TDbContext context)
         {
-            _context = context;
-            table=_context.Set< T >();
+            dbContext = context;
         }
-        public async Task<IEnumerable<T>> GetAll()
+
+        public async Task CreateAsync<T>(T entity) where T : class
         {
-            return await table.ToListAsync<T>();
+            this.dbContext.Set<T>().Add(entity);
+
+            _ = await this.dbContext.SaveChangesAsync();
         }
-        public async Task<T> Get(int id)
+
+        public async Task DeleteAsync<T>(T entity) where T : class
         {
-            return await table.FindAsync(id);
+            this.dbContext.Set<T>().Remove(entity);
+
+            _ = await this.dbContext.SaveChangesAsync();
         }
-        public void Insert(T obj)
+
+       public async Task<List<T>> SelectAll<T>() where T : class
         {
-            if (obj == null) {  
-                throw new ArgumentNullException("Object is empty");  
-            } 
-            table.Add(obj);
+            return await this.dbContext.Set<T>().ToListAsync();
         }
-        public void Update(T obj)
+
+
+        public async Task<T> SelectById<T>(long id) where T : class
         {
-            if (obj == null) {  
-                throw new ArgumentNullException("Object is empty");  
-            } 
-            table.Attach(obj);
-            _context.Entry(obj).State = EntityState.Modified;
+            return await this.dbContext.Set<T>().FindAsync(id);
         }
-        public void Delete(int id)
+
+        public async Task UpdateAsync<T>(T entity) where T : class
         {
-            T existing = table.Find(id);
-            if (existing == null) {  
-                throw new ArgumentNullException("Object is empty");  
-            } 
-            table.Remove(existing);
+            this.dbContext.Set<T>().Update(entity);
+
+            _ = await this.dbContext.SaveChangesAsync();
         }
-        public async Task<int> Save()
-        {
-            return await _context.SaveChangesAsync();
-        }
-    }
-}
+    }}

@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ShipManagementApi.Models.Ships;
-using ShipManagementApi.BL;
+using ShipManagementApi.DAL;
 using ShipManagementApi.Entities;
 using ShipManagementApi.Helpers;
 
@@ -11,67 +11,70 @@ namespace ShipManagementApi.Controllers
     [ApiController]
     public class ShipsController : ControllerBase
     {
-        private IBaseService<Ship> _shipService;
-        private IMapper _mapper;
-
-        public ShipsController(
-            IBaseService<Ship> shipService,
-            IMapper mapper)
+        private readonly IRepository _repository;
+        private readonly IMapper _mapper;
+        public ShipsController(DataContext context, IRepository repository, IMapper mapper)
         {
-            _shipService = shipService;
+            _repository = repository;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<IEnumerable<Ship>>> GetAll()
         {
-            var ships = await _shipService.GetAll();
-            return Ok(ships);
+            var model =  await _repository.SelectAll<Ship>();
+            return model;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Ship>> GetById(int id)
+        public async Task<ActionResult<Ship>> GetById(long id)
         {
-            var ship = await _shipService.Get(id);
-            return Ok(ship);
+            var model = await _repository.SelectById<Ship>(id);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return model;
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(ShipRequest model)
         {
-            if(await CheckIfCodeExists(model.Code))
-            {
-                throw new AppException("Ship with the code '" + model.Code + "' already exists");
-            }
-            var ship=_mapper.Map<Ship>(model);
-            await _shipService.Insert(ship);
-            return CreatedAtAction("GetById", new { id = ship.Id }, ship);
+            Ship ship=_mapper.Map<Ship>(model);
+            await _repository.CreateAsync<Ship>(ship);
+            return CreatedAtAction("GetById", new { id = ship.Id }, ship); 
         }
 
-        public async Task<bool> CheckIfCodeExists(string code)
-        {
-            var ships = await _shipService.GetAll();
-            return (ships.Any(x => x.Code == code));         
-        }
+
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, ShipRequest model)
+        public async Task<IActionResult> Update(long id, ShipRequest model)
         {
-            if(await CheckIfCodeExists(model.Code))
+            if (id != model.Id)
             {
-                throw new AppException("Ship with the code '" + model.Code + "' already exists");
+                return BadRequest();
             }
-            var ship=_mapper.Map<Ship>(model);
-            ship.Id=id;
-            await _shipService.Update(ship);
-            return Ok(new { message = "Ship updated" });
+            Ship ship=_mapper.Map<Ship>(model);
+            await _repository.UpdateAsync<Ship>(ship);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<ActionResult<Ship>> Delete(long id)
         {
-            _shipService.Delete(id);
-            return Ok(new { message = "Ship deleted" });
+            var model = await _repository.SelectById<Ship>(id);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            await _repository.DeleteAsync<Ship>(model);
+
+            return model;
         }
     }
 }
