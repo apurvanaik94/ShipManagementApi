@@ -67,9 +67,15 @@ namespace ShipManagementApi.Controllers
                 throw new AppException("Ship with the code '" + model.Code + "' already exists");
             }
             _mapper.Map(model, existingShip);
+            try
+            {
             await _repository.UpdateAsync<Ship>(existingShip);
-
-            return NoContent();
+            }
+            catch(Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+            return Ok();
         }
 
         [HttpDelete("{id}")]
